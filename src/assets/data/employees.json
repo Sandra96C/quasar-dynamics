@@ -1,0 +1,65 @@
+{
+    "employees": [
+        {
+            "id": 1,
+            "fullName": "Carlos Martínez",
+            "email": "carlos@empresa.com",
+            "password": "12345678",
+            "role": "Desarrollador Frontend",
+            "projects": [
+                1,
+                102
+            ],
+            "tasks": [
+                1,
+                2,
+                5
+            ]
+        },
+        {
+            "id": 2,
+            "fullName": "Laura Gómez",
+            "email": "laura@empresa.com",
+            "password": "12345678",
+            "role": "Diseñadora UX/UI",
+            "projects": [
+                1
+            ],
+            "tasks": [
+                3,
+                6
+            ]
+        },
+        {
+            "id": 3,
+            "fullName": "Andrés Pérez",
+            "email": "andres@empresa.com",
+            "password": "12345678",
+            "role": "Desarrollador Backend",
+            "projects": [
+                2,
+                3
+            ],
+            "tasks": [
+                4,
+                7,
+                8
+            ]
+        },
+        {
+            "id": 4,
+            "fullName": "María Rodríguez",
+            "email": "maria@empresa.com",
+            "password": "12345678",
+            "role": "Project Manager",
+            "projects": [
+                1,
+                2,
+                3
+            ],
+            "tasks": [
+                9
+            ]
+        }
+    ]
+}
