@@ -2,13 +2,13 @@
     "employees": [
         {
             "id": 1,
-            "fullName": "Carlos Martínez",
-            "email": "carlos@empresa.com",
+            "fullName": "Sandra Colomer",
+            "email": "sandra@empresa.com",
             "password": "12345678",
-            "role": "Desarrollador Frontend",
+            "role": "admin",
             "projects": [
                 1,
-                102
+                2
             ],
             "tasks": [
                 1,
@@ -21,7 +21,7 @@
             "fullName": "Laura Gómez",
             "email": "laura@empresa.com",
             "password": "12345678",
-            "role": "Diseñadora UX/UI",
+            "role": "employee",
             "projects": [
                 1
             ],
@@ -35,7 +35,7 @@
             "fullName": "Andrés Pérez",
             "email": "andres@empresa.com",
             "password": "12345678",
-            "role": "Desarrollador Backend",
+            "role": "employee",
             "projects": [
                 2,
                 3
@@ -51,7 +51,7 @@
             "fullName": "María Rodríguez",
             "email": "maria@empresa.com",
             "password": "12345678",
-            "role": "Project Manager",
+            "role": "employee",
             "projects": [
                 1,
                 2,

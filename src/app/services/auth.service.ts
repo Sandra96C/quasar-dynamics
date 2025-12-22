@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Employee, EmployeeService } from './employee.service';
+import { EmployeeService } from './employee.service';
 import { map, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -9,19 +8,25 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  private readonly TOKEN_COOKIE = 'auth_token';
-  constructor(private employeeService: EmployeeService, private http: HttpClient) { }
+  private readonly STORAGE_KEY = 'auth_token';
+
+  constructor(
+    private employeeService: EmployeeService
+  ) { }
 
 
   isLoggedIn(): boolean {
-    return document.cookie
-      .split(';')
-      .some(cookie => cookie.trim().startsWith(`${this.TOKEN_COOKIE}=`));
+    return !!sessionStorage.getItem(this.STORAGE_KEY);
+  }
+
+  getCurrentUser(): any | null {
+    const data = sessionStorage.getItem(this.STORAGE_KEY);
+    return data ? JSON.parse(data) : null;
   }
 
   login(email: string, password: string): Observable<{ success: boolean; error?: string }> {
     return this.employeeService.getEmployees().pipe(
-      map((employees: Employee[]) => {
+      map((employees) => {
         const user = employees.find(e => e.email === email);
 
         if (!user) {
@@ -32,17 +37,19 @@ export class AuthService {
           return { success: false, error: 'Contraseña incorrecta' };
         }
 
-        // Login OK → guardamos info mínima en cookie
-        document.cookie = `${this.TOKEN_COOKIE}=${user.id}; path=/`;
+        sessionStorage.setItem(this.STORAGE_KEY, JSON.stringify({
+          id: user.id,
+          fullName: user.fullName,
+          role: user.role
+        }));
 
         return { success: true };
       })
     );
   }
 
-
   logout(): void {
-    document.cookie = `${this.TOKEN_COOKIE}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+    sessionStorage.removeItem(this.STORAGE_KEY);
   }
 
 }
