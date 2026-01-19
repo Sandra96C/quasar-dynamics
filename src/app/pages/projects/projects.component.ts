@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Column, TableComponent } from '../../components/table/table.component';
-import { Project, ProjectService } from '../../services/project.service';
-import { ButtonModule } from 'primeng/button';
+import { Component, OnInit } from "@angular/core";
+import { Column, TableComponent } from "../../components/table/table.component";
+import { Project, ProjectService } from "../../services/project.service";
+import { ButtonModule } from "primeng/button";
 export interface DataItem {
-  name: string,
-  type: string,
-  value: any
+  name: string;
+  type: string;
+  value: any;
 }
 
 @Component({
-  selector: 'app-projects',
+  selector: "app-projects",
   standalone: true,
   imports: [TableComponent, ButtonModule],
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss'
+  templateUrl: "./projects.component.html",
+  styleUrl: "./projects.component.scss",
 })
 export class ProjectsComponent implements OnInit {
   projects: Project[] = [];
@@ -21,9 +21,7 @@ export class ProjectsComponent implements OnInit {
   projectDialog = false;
   selectedProject?: DataItem;
 
-  constructor(
-    private projectService: ProjectService
-  ) { }
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
     this.getProjects();
@@ -34,16 +32,16 @@ export class ProjectsComponent implements OnInit {
       next: (data) => {
         if (data) {
           this.projects = data;
-          this.columns = Object.keys(data[0]).map(key => { return { name: key } });
+          this.columns = Object.keys(data[0]).map((key) => {
+            return { name: key };
+          });
           console.log(data);
-
         }
       },
       error: (err) => {
         console.log(err);
-
-      }
-    })
+      },
+    });
   }
 
   createNewProject() {
@@ -52,7 +50,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   onSave(updatedItem: Project) {
-    console.log('Item guardado:', updatedItem);
+    console.log("Item guardado:", updatedItem);
     this.projectDialog = false;
   }
 }
