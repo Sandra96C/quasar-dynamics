@@ -1,31 +1,19 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-
-export interface Employee {
-  id: number;
-  fullName: string;
-  email: string;
-  password: string;
-  role: string;
-  projects: number[];
-  tasks: number[];
-}
-
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { map, Observable } from "rxjs";
+import { Employee } from "../models/models";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class EmployeeService {
+  private URL = "assets/data/employees.json";
 
-  private URL = 'assets/data/employees.json';
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   getEmployees(): Observable<Employee[]> {
     return this.http
       .get<{ employees: Employee[] }>(this.URL)
-      .pipe(map(res => res.employees));
+      .pipe(map((res) => res.employees));
   }
 }

@@ -1,16 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { Column, TableComponent } from "../../components/table/table.component";
-import { Employee, EmployeeService } from "../../services/employee.service";
+import { TableComponent } from "../../components/table/table.component";
+import { EmployeeService } from "../../services/employee.service";
 import { ButtonModule } from "primeng/button";
-export interface DataItem {
-  name: string;
-  type: string;
-  value: any;
-}
+import { Column, Entity, Employee } from "../../models/models";
+import { EntityModalComponent } from "../../components/entity-modal/entity-modal.component";
+
 @Component({
   selector: "app-employees",
   standalone: true,
-  imports: [TableComponent, ButtonModule],
+  imports: [TableComponent, ButtonModule, EntityModalComponent],
   templateUrl: "./employees.component.html",
   styleUrl: "./employees.component.scss",
 })
@@ -18,7 +16,8 @@ export class EmployeesComponent implements OnInit {
   employees: Employee[] = [];
   columns: Column[] = [];
   employeeDialog = false;
-  selectedEmployee?: DataItem;
+  entity?: Entity;
+  dialogVisible: boolean = false;
 
   constructor(private employeeService: EmployeeService) {}
 
@@ -28,7 +27,7 @@ export class EmployeesComponent implements OnInit {
 
   getEmployees() {
     this.employeeService.getEmployees().subscribe({
-      next: (data) => {
+      next: (data: Employee[]) => {
         if (data) {
           this.employees = data;
           this.columns = Object.keys(data[0]).map((key) => {
@@ -41,5 +40,89 @@ export class EmployeesComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  createNewEmployee() {
+    this.entity = {
+      name: "Crear Nuevo Empleado",
+      fields: [
+        {
+          key: "fullName",
+          label: "Nombre",
+          type: "string",
+        },
+        {
+          key: "email",
+          label: "Correo",
+          type: "string",
+        },
+        {
+          key: "password",
+          label: "Contrasena",
+          type: "string",
+        },
+        {
+          key: "role",
+          label: "Rol",
+          type: "string",
+        },
+        {
+          key: "projects",
+          label: "Proyectos",
+          type: "string",
+        },
+        {
+          key: "task",
+          label: "Tareas",
+          type: "string",
+        },
+      ],
+    };
+    this.dialogVisible = true;
+  }
+
+  onEditEmployee(item: any) {
+    this.entity = {
+      name: "Editar Empleado",
+      fields: [
+        {
+          key: "fullName",
+          label: "Nombre",
+          value: item.fullName,
+          type: "string",
+        },
+        {
+          key: "email",
+          label: "Correo",
+          value: item.email,
+          type: "string",
+        },
+        {
+          key: "password",
+          label: "Contrasena",
+          value: item.password,
+          type: "string",
+        },
+        {
+          key: "role",
+          label: "Rol",
+          value: item.role,
+          type: "string",
+        },
+        {
+          key: "projects",
+          label: "Proyectos",
+          value: item.projects,
+          type: "string",
+        },
+        {
+          key: "task",
+          label: "Tareas",
+          value: item.task,
+          type: "string",
+        },
+      ],
+    };
+    this.dialogVisible = true;
   }
 }

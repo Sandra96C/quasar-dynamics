@@ -1,15 +1,18 @@
 <div class="px-4 py-8">
-    <header class="mb-8">
-        <div class="flex items-center gap-5">
-            <h1> Proyectos</h1>
-        </div>
-    </header>
-    <div class="card">
-        <p-button>
-            New Project
-        </p-button>
+  <header class="mb-8">
+    <div class="flex items-center gap-5">
+      <h1> Proyectos</h1>
     </div>
-    <div>
-        <app-table [columns]="columns" [items]="projects" [crud]="true"></app-table>
-    </div>
+  </header>
+  <div class="card">
+    <p-button (onClick)="createNewProject()">
+      New Project
+    </p-button>
+  </div>
+  <div>
+    <app-table [columns]="columns" [items]="projects" [crud]="true" (editItem)="onEditProject($event)"
+      (viewItem)="onViewProject($event)"></app-table>
+  </div>
 </div>
+
+<app-entity-modal [(visible)]="dialogVisible" [entity]="entity" />

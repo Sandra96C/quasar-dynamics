@@ -13,8 +13,8 @@
 
         </div>
 
-        <div class="field">
-            <label>Contraseña</label>
+        <div class="field p-8">
+            <label class="font-extrabold">Contraseña</label>
             <p-password formControlName="password" [toggleMask]="true" [feedback]="false" [ngClass]="{
                 'ng-invalid ng-dirty': loginForm.get('password')?.invalid && loginForm.get('password')?.touched
               }">

@@ -1,16 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { Column, TableComponent } from "../../components/table/table.component";
-import { Task, TasksService } from "../../services/tasks.service";
+import { TableComponent } from "../../components/table/table.component";
+import { TasksService } from "../../services/tasks.service";
 import { ButtonModule } from "primeng/button";
-export interface DataItem {
-  name: string;
-  type: string;
-  value: any;
-}
+import { Column, Entity, Task } from "../../models/models";
+import { EntityModalComponent } from "../../components/entity-modal/entity-modal.component";
+
 @Component({
   selector: "app-tasks",
   standalone: true,
-  imports: [TableComponent, ButtonModule],
+  imports: [TableComponent, ButtonModule, EntityModalComponent],
   templateUrl: "./tasks.component.html",
   styleUrl: "./tasks.component.scss",
 })
@@ -18,7 +16,8 @@ export class TasksComponent implements OnInit {
   tasks: Task[] = [];
   columns: Column[] = [];
   taskDialog = false;
-  selectedTask?: DataItem;
+  entity?: Entity;
+  dialogVisible: boolean = false;
 
   constructor(private taskService: TasksService) {}
 
@@ -28,10 +27,8 @@ export class TasksComponent implements OnInit {
 
   getTasks() {
     this.taskService.getTasks().subscribe({
-      next: (data) => {
+      next: (data: Task[]) => {
         if (data) {
-          console.log(data);
-
           this.tasks = data;
           this.columns = Object.keys(data[0]).map((key) => {
             return { name: key };
@@ -43,5 +40,92 @@ export class TasksComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  createNewTask() {
+    this.entity = {
+      name: "Crear Nueva Tarea",
+      fields: [
+        { key: "title", label: "Titulo", type: "string" },
+        {
+          key: "description",
+          label: "Descripcion",
+          type: "textarea",
+        },
+        {
+          key: "status",
+          label: "Estado",
+          type: "string",
+        },
+        {
+          key: "startDate",
+          label: "Fecha Inicio",
+          type: "date",
+        },
+        {
+          key: "endDate",
+          label: "Fecha fin",
+          type: "date",
+        },
+        {
+          key: "employee",
+          label: "Empleado",
+          type: "string",
+        },
+        {
+          key: "project",
+          label: "Proyecto",
+          type: "string",
+        },
+      ],
+    };
+    this.dialogVisible = true;
+  }
+
+  onEditTask(item: any) {
+    console.log("item", item);
+    this.entity = {
+      name: "Editar Tarea",
+      fields: [
+        { key: "title", label: "Titulo", value: item.title, type: "string" },
+        {
+          key: "description",
+          label: "Descripcion",
+          value: item.description,
+          type: "textarea",
+        },
+        {
+          key: "status",
+          label: "Estado",
+          value: item.status,
+          type: "string",
+        },
+        {
+          key: "startDate",
+          label: "Fecha Inicio",
+          value: item.startDate,
+          type: "date",
+        },
+        {
+          key: "endDate",
+          label: "Fecha fin",
+          value: item.endDate,
+          type: "date",
+        },
+        {
+          key: "employee",
+          label: "Empleado",
+          value: item.employee,
+          type: "string",
+        },
+        {
+          key: "project",
+          label: "Proyecto",
+          value: item.project,
+          type: "string",
+        },
+      ],
+    };
+    this.dialogVisible = true;
   }
 }

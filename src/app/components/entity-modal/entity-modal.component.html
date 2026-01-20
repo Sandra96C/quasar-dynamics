@@ -1,0 +1,39 @@
+<p-dialog [header]="entity?.name" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
+    (onHide)="onClose()">
+    @for (item of entity?.fields; track $index) {
+    <div>
+        <label for="{{item.label}}">{{item.label}}</label>
+        @switch (item.type) {
+        @case ("string") {
+        <input pInputText id="{{item.label}}" autocomplete="off" [(ngModel)]="item.value" />
+        }
+
+        @case ("textarea") {
+        <textarea id="{{item.label}}" cols="30" [(ngModel)]="item.value"></textarea>
+        }
+
+        @case ("number") {
+        <input pInputNumber id="{{item.label}}" autocomplete="off" [(ngModel)]="item.value" />
+        }
+        @case ("date") {
+        <p-calendar id="{{item.label}}" [(ngModel)]="item.value" />
+        }
+        @case ("check") {
+        <p-checkbox id="{{item.label}}" [(ngModel)]="item.value" [binary]="true" inputId="binary" />
+        }
+        @case ("select") {
+        <!-- <p-dropdown 
+    [options]="cities" 
+    [(ngModel)]="selectedCity" 
+    optionLabel="name" 
+    placeholder="Select a City" /> -->
+        }
+        }
+    </div>
+    }
+
+    <div class="flex justify-content-end gap-2 mt-5">
+        <p-button label="Cancel" severity="secondary" (onClick)="onClose()" />
+        <p-button label="Save" (onClick)="visible = false" />
+    </div>
+</p-dialog>

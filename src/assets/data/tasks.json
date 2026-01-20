@@ -4,81 +4,81 @@
       "id": 1,
       "title": "Lorem ipsum",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus et quam a facilisis. Donec eget augue leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur molestie finibus odio in tempor. Sed at sagittis orci. Donec iaculis quam ipsum, vulputate aliquam felis venenatis imperdiet.",
-      "status": 1,
+      "status": "Pendiente",
       "startDate": "03-12-2025",
       "endDate": "20-12-2025",
-      "employee": 1,
-      "project_id": 1
+      "employee": "Sandra",
+      "project": "Colchones"
     },
     {
       "id": 2,
       "title": "Consectetur adipiscing",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus et quam a facilisis. Donec eget augue leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur molestie finibus odio in tempor. Sed at sagittis orci. Donec iaculis quam ipsum, vulputate aliquam felis venenatis imperdiet.",
-      "status": 2,
+      "status": "Progreso",
       "startDate": "06-12-2025",
       "endDate": "20-12-2025",
-      "employee": 3,
-      "project_id": 3
+      "employee": "María",
+      "project_id": "Electro"
     },
     {
       "id": 3,
       "title": "Integer cursus et",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus et quam a facilisis. Donec eget augue leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur molestie finibus odio in tempor. Sed at sagittis orci. Donec iaculis quam ipsum, vulputate aliquam felis venenatis imperdiet.",
-      "status": 3,
+      "status": "Cerrado",
       "startDate": "10-10-2025",
       "endDate": "05-01-2026",
-      "employee": 2,
-      "project_id": 2
+      "employee": "Laura",
+      "project": "Colchones"
     },
     {
       "id": 4,
       "title": "Class aptent taciti",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus et quam a facilisis. Donec eget augue leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur molestie finibus odio in tempor. Sed at sagittis orci. Donec iaculis quam ipsum, vulputate aliquam felis venenatis imperdiet.",
-      "status": 1,
+      "status": "Pendiente",
       "startDate": "01-01-2026",
       "endDate": "15-01-2026",
-      "employee": 1,
-      "project_id": 1
+      "employee": "Andrés",
+      "project_id": "Electro"
     },
     {
       "id": 5,
       "title": "Donec eget augue",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus et quam a facilisis. Donec eget augue leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur molestie finibus odio in tempor. Sed at sagittis orci. Donec iaculis quam ipsum, vulputate aliquam felis venenatis imperdiet.",
-      "status": 1,
+      "status": "Pendiente",
       "startDate": "10-12-2025",
       "endDate": "15-12-2025",
-      "employee": 2,
-      "project_id": 1
+      "employee": "Sandra",
+      "project": "Colchones"
     },
     {
       "id": 6,
       "title": "Curabitur molestie",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus et quam a facilisis. Donec eget augue leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur molestie finibus odio in tempor. Sed at sagittis orci. Donec iaculis quam ipsum, vulputate aliquam felis venenatis imperdiet.",
-      "status": 2,
+      "status": "Progreso",
       "startDate": "05-12-2025",
       "endDate": "07-12-2025",
-      "employee": 1,
-      "project_id": 3
+      "employee": "Laura",
+      "project": "Colchones"
     },
     {
       "id": 7,
       "title": "Odio in tempor",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus et quam a facilisis. Donec eget augue leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur molestie finibus odio in tempor. Sed at sagittis orci. Donec iaculis quam ipsum, vulputate aliquam felis venenatis imperdiet.",
-      "status": 3,
+      "status": "Cerrado",
       "startDate": "22-12-2025",
       "endDate": "24-12-2025",
-      "employee": 3,
-      "project_id": 2
+      "employee": "Andrés",
+      "project": "Restaurante"
     },
     {
       "id": 8,
       "title": "Donec iaculis quam ipsum",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus et quam a facilisis. Donec eget augue leo. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur molestie finibus odio in tempor. Sed at sagittis orci. Donec iaculis quam ipsum, vulputate aliquam felis venenatis imperdiet.",
-      "status": 1,
+      "status": "Pendiente",
       "startDate": "03-03-2026",
       "endDate": "13-03-2026",
-      "employee": 2,
-      "project_id": 1
+      "employee": "Andrés",
+      "project": "Restaurante"
     }
   ]
 }

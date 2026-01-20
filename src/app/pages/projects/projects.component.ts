@@ -1,27 +1,29 @@
 import { Component, OnInit } from "@angular/core";
-import { Column, TableComponent } from "../../components/table/table.component";
-import { Project, ProjectService } from "../../services/project.service";
+import { TableComponent } from "../../components/table/table.component";
+import { ProjectService } from "../../services/project.service";
 import { ButtonModule } from "primeng/button";
-export interface DataItem {
-  name: string;
-  type: string;
-  value: any;
-}
+import { EntityModalComponent } from "../../components/entity-modal/entity-modal.component";
+import { Column, Entity, Project } from "../../models/models";
+import { ActivatedRoute, Router, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: "app-projects",
   standalone: true,
-  imports: [TableComponent, ButtonModule],
+  imports: [TableComponent, ButtonModule, EntityModalComponent, RouterOutlet],
   templateUrl: "./projects.component.html",
   styleUrl: "./projects.component.scss",
 })
 export class ProjectsComponent implements OnInit {
   projects: Project[] = [];
   columns: Column[] = [];
-  projectDialog = false;
-  selectedProject?: DataItem;
+  entity?: Entity;
+  dialogVisible: boolean = false;
 
-  constructor(private projectService: ProjectService) {}
+  constructor(
+    private projectService: ProjectService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     this.getProjects();
@@ -29,7 +31,7 @@ export class ProjectsComponent implements OnInit {
 
   getProjects() {
     this.projectService.getProjects().subscribe({
-      next: (data) => {
+      next: (data: Project[]) => {
         if (data) {
           this.projects = data;
           this.columns = Object.keys(data[0]).map((key) => {
@@ -45,12 +47,59 @@ export class ProjectsComponent implements OnInit {
   }
 
   createNewProject() {
-    // this.selectedItem = { ...item };
-    this.projectDialog = true;
+    this.entity = {
+      name: "Crear Nuevo Proyecto",
+      fields: [
+        { key: "name", label: "Nombre", type: "string" },
+        {
+          key: "description",
+          label: "Descripcion",
+          type: "textarea",
+        },
+        {
+          key: "startDate",
+          label: "Fecha inicio",
+          type: "date",
+        },
+        {
+          key: "endDate",
+          label: "Fecha fin",
+          type: "date",
+        },
+      ],
+    };
+    this.dialogVisible = true;
   }
 
-  onSave(updatedItem: Project) {
-    console.log("Item guardado:", updatedItem);
-    this.projectDialog = false;
+  onEditProject(item: any) {
+    this.entity = {
+      name: "Editar Proyecto",
+      fields: [
+        { key: "name", label: "Nombre", value: item.name, type: "string" },
+        {
+          key: "description",
+          label: "Descripcion",
+          value: item.description,
+          type: "textarea",
+        },
+        {
+          key: "startDate",
+          label: "Fecha inicio",
+          value: item.startDate,
+          type: "date",
+        },
+        {
+          key: "endDate",
+          label: "Fecha fin",
+          value: item.endDate,
+          type: "date",
+        },
+      ],
+    };
+    this.dialogVisible = true;
+  }
+
+  onViewProject(item: any) {
+    this.router.navigate([item.id], { relativeTo: this.route });
   }
 }

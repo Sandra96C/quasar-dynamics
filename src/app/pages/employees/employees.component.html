@@ -10,6 +10,9 @@
         </p-button>
     </div>
     <div>
-        <app-table [columns]="columns" [items]="employees" [crud]="true"></app-table>
+        <app-table [columns]="columns" [items]="employees" [crud]="true"
+            (editItem)="onEditEmployee($event)"></app-table>
     </div>
 </div>
+
+<app-entity-modal [visible]="dialogVisible" [entity]="entity" />
