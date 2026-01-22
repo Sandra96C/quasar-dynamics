@@ -2,16 +2,34 @@
   <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let column of columns ">{{column.name | titlecase }}</th>
+        <th *ngFor="let column of columns ">{{column.label | titlecase }}</th>
         <th *ngIf="crud"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-item>
       <tr>
-        <td *ngFor="let column of columns"> {{ item[column.name ] }}</td>
+        <td *ngFor="let column of columns">
+          @switch(column.type) {
+          @case ("date") {
+          {{ item[column.key] | date: 'dd/MM/yyyy'}}
+          }
+          @case ("status") {
+          <p-tag [value]="item[column.key]" [severity]="
+                item[column.key] === 'Pendiente'
+                  ? 'warning'
+                  : item[column.key] === 'Completada'
+                  ? 'success'
+                  : 'info'
+              "></p-tag>
+          }
+          @default{
+          {{ item[column.key] }}
+          }
+          }
+        </td>
         <td *ngIf="crud">
           <p-button icon="pi pi-pencil" class="mr-2" [rounded]="true" [outlined]="true" severity="success"
-            (onClick)="onEditItem(item)" />
+            (onClick)="onEditEvent(item)" />
           <p-button icon="pi pi-trash" severity="danger" [rounded]="true" [outlined]="true"
             (onClick)="deleteItem(item, $event)" />
           <p-button icon="pi pi-eye" severity="info" [rounded]="true" [outlined]="true" (onClick)="onViewItem(item)" />

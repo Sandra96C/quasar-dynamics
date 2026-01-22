@@ -30,9 +30,14 @@ export class EmployeesComponent implements OnInit {
       next: (data: Employee[]) => {
         if (data) {
           this.employees = data;
-          this.columns = Object.keys(data[0]).map((key) => {
-            return { name: key };
-          });
+          this.columns = [
+            { key: "id", label: "id" },
+            { key: "fullName", label: "nombre" },
+            { key: "email", label: "correo electronico" },
+            { key: "role", label: "rol" },
+            { key: "projects", label: "proyectos" },
+            { key: "tasks", label: "tareas asignadas" },
+          ];
           console.log(data);
         }
       },

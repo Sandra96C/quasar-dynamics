@@ -9,10 +9,12 @@
       New Project
     </p-button>
   </div>
+  @if (projects && projects.length) {
   <div>
-    <app-table [columns]="columns" [items]="projects" [crud]="true" (editItem)="onEditProject($event)"
+    <app-table [columns]="columns" [items]="projects" [crud]="true" (editEvent)="onEditProject($event)"
       (viewItem)="onViewProject($event)"></app-table>
   </div>
+  }
 </div>
 
-<app-entity-modal [(visible)]="dialogVisible" [entity]="entity" />
+<app-entity-modal [(visible)]="dialogVisible" [entity]="entity" (submitEntity)="editProject($event)" />

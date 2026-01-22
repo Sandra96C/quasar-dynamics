@@ -1,1 +1,24 @@
-<p>project-detail works!</p>
+<div class="project-wrapper " *ngIf="project">
+
+  <!-- PROYECTO -->
+  <p-card class="project-card">
+    <ng-template pTemplate="header">
+      <h2>{{ project.name }}</h2>
+    </ng-template>
+
+    <h4> Descripción: </h4>
+    <p class="description">
+      {{ project.description }}
+    </p>
+  </p-card>
+
+  <!-- TAREAS -->
+  <p-card>
+    <ng-template pTemplate="header">
+      <h3>Tareas</h3>
+    </ng-template>
+
+    <app-table [columns]="columns" [items]="tasks" [crud]="false"></app-table>
+  </p-card>
+
+</div>

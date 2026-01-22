@@ -30,10 +30,16 @@ export class TasksComponent implements OnInit {
       next: (data: Task[]) => {
         if (data) {
           this.tasks = data;
-          this.columns = Object.keys(data[0]).map((key) => {
-            return { name: key };
-          });
-          console.log(data);
+          this.columns = [
+            { key: "id", label: "id" },
+            { key: "title", label: "titulo" },
+            { key: "description", label: "descripcion" },
+            { key: "status", label: "estado", type: "status" },
+            { key: "startDate", label: "fecha de inicio", type: "date" },
+            { key: "endDate", label: "fecha fin", type: "date" },
+            { key: "employee", label: "empleado" },
+            { key: "project", label: "proyecto" },
+          ];
         }
       },
       error: (err) => {

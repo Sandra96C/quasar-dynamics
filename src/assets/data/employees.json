@@ -3,8 +3,8 @@
     {
       "id": 1,
       "fullName": "Sandra Colomer",
-      "email": "sandra@empresa.com",
-      "password": "12345678",
+      "email": "123@123.es",
+      "password": "123",
       "role": "admin",
       "projects": [1, 2],
       "tasks": [1, 5]

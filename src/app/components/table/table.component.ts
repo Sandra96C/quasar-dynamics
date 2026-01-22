@@ -6,6 +6,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { ToastModule } from "primeng/toast";
 import { Column, Entity } from "../../models/models";
+import { TagModule } from "primeng/tag";
 
 @Component({
   selector: "app-table",
@@ -16,6 +17,7 @@ import { Column, Entity } from "../../models/models";
     ButtonModule,
     ConfirmDialogModule,
     ToastModule,
+    TagModule,
   ],
   providers: [ConfirmationService, MessageService],
   templateUrl: "./table.component.html",
@@ -26,7 +28,9 @@ export class TableComponent implements OnInit {
   @Input() items: any = [];
   @Input() crud: boolean = false;
   itemDialog = false;
-  @Output() editItem = new EventEmitter<Entity>();
+  @Output() editEvent = new EventEmitter<Entity>();
+  @Output() deleteEvent = new EventEmitter<Entity>();
+  @Output() createEvent = new EventEmitter<Entity>();
   @Output() viewItem = new EventEmitter<Entity>();
 
   constructor(
@@ -37,8 +41,8 @@ export class TableComponent implements OnInit {
     console.log(this.crud);
   }
 
-  onEditItem(item: any) {
-    this.editItem.emit(item);
+  onEditEvent(item: any) {
+    this.editEvent.emit(item);
   }
 
   deleteItem(item: any, event: Event) {

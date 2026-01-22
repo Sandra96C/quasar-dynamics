@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { Task } from "../models/models";
+import { Task, TaskFilters } from "../models/models";
 
 @Injectable({
   providedIn: "root",
@@ -11,14 +11,30 @@ export class TasksService {
 
   constructor(private http: HttpClient) {}
 
-  getTasks(): Observable<Task[]> {
+  getTasks(filters?: TaskFilters): Observable<Task[]> {
     return this.http.get<{ tasks: Task[] }>(this.URL).pipe(
       map((res) =>
-        res.tasks.map((p) => ({
-          ...p,
-          startDate: p.startDate ? new Date(p.startDate) : undefined,
-          endDate: p.endDate ? new Date(p.endDate) : undefined,
-        })),
+        res.tasks
+          .filter((task) => {
+            if (filters?.projectId && task.project !== filters.projectId) {
+              return false;
+            }
+
+            if (filters?.status && task.status !== filters.status) {
+              return false;
+            }
+
+            if (filters?.employee && task.employee !== filters.employee) {
+              return false;
+            }
+
+            return true;
+          })
+          .map((task) => ({
+            ...task,
+            startDate: task.startDate ? new Date(task.startDate) : undefined,
+            endDate: task.endDate ? new Date(task.endDate) : undefined,
+          })),
       ),
     );
   }
