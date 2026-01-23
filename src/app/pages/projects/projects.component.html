@@ -4,17 +4,13 @@
       <h1> Proyectos</h1>
     </div>
   </header>
-  <div class="card">
-    <p-button (onClick)="createNewProject()">
-      New Project
-    </p-button>
-  </div>
   @if (projects && projects.length) {
   <div>
     <app-table [columns]="columns" [items]="projects" [crud]="true" (editEvent)="onEditProject($event)"
+      (createEvent)="onCreateNewProject()" (deleteEvent)="onDeleteProject($event)"
       (viewItem)="onViewProject($event)"></app-table>
   </div>
   }
 </div>
 
-<app-entity-modal [(visible)]="dialogVisible" [entity]="entity" (submitEntity)="editProject($event)" />
+<app-entity-modal [(visible)]="dialogVisible" [entity]="entity" />

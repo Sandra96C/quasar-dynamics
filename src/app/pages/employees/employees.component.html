@@ -1,18 +1,12 @@
 <div class="px-4 py-8">
-    <header class="mb-8">
-        <div class="flex items-center gap-5">
-            <h1> Empleados</h1>
-        </div>
-    </header>
-    <div class="card">
-        <p-button>
-            Nuevo Empleado
-        </p-button>
+  <header class="mb-8">
+    <div class="flex items-center gap-5">
+      <h1> Empleados</h1>
     </div>
-    <div>
-        <app-table [columns]="columns" [items]="employees" [crud]="true"
-            (editItem)="onEditEmployee($event)"></app-table>
-    </div>
+  </header>
+  <div>
+    <app-table [columns]="columns" [items]="employees" [crud]="true" (editItem)="onEditEmployee($event)"></app-table>
+  </div>
 </div>
 
 <app-entity-modal [visible]="dialogVisible" [entity]="entity" />

@@ -1,44 +1,33 @@
-<p-dialog [header]="entity?.name" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
-  (onHide)="onClose()">
+<p-dialog class="entity-dialog" [header]="entity?.name" [modal]="true" [(visible)]="visible"
+  [style]="{ width: '50rem' }" (onHide)="onClose()">
   @for (item of entity?.fields; track $index) {
-  <div>
-    <label for="{{item.label}}">{{item.label}}</label>
+  <div class="form-field">
+    <label class="form-label" for="{{item.label}}">{{item.label}}</label>
     @switch (item.type) {
     @case ("string") {
-    <input pInputText id="{{item.label}}" autocomplete="off" [(ngModel)]="item.value"
+    <input class="form-control" pInputText id="{{item.label}}" autocomplete="off" [(ngModel)]="item.value"
       (ngModelChange)="onFieldChange(item.key, item.value)" [disabled]="item.disabled" />
     }
 
     @case ("textarea") {
-    <textarea id="{{item.label}}" cols="30" [(ngModel)]="item.value"
+    <textarea class="form-control textarea" id="{{item.label}}" cols="30" [(ngModel)]="item.value"
       (ngModelChange)="onFieldChange(item.key, item.value)" [disabled]="item.disabled"></textarea>
     }
 
     @case ("number") {
-    <input pInputNumber id="{{item.label}}" autocomplete="off" [(ngModel)]="item.value"
+    <input class="form-control" pInputNumber id="{{item.label}}" autocomplete="off" [(ngModel)]="item.value"
       (ngModelChange)="onFieldChange(item.key, item.value)" [disabled]="item.disabled" />
     }
     @case ("date") {
-    <p-calendar id="{{item.label}}" [(ngModel)]="item.value" (ngModelChange)="onFieldChange(item.key, item.value)"
-      [disabled]="item.disabled" />
-    }
-    @case ("check") {
-    <p-checkbox id="{{item.label}}" [(ngModel)]="item.value" [binary]="true" inputId="binary"
+    <p-calendar class="form-control calendar-small" id="{{item.label}}" [(ngModel)]="item.value"
       (ngModelChange)="onFieldChange(item.key, item.value)" [disabled]="item.disabled" />
-    }
-    @case ("select") {
-    <!-- <p-dropdown 
-        [options]="cities" 
-        [(ngModel)]="selectedCity" 
-        optionLabel="name" 
-        placeholder="Select a City" /> -->
     }
     }
 
   </div>
   }
 
-  <div class="flex justify-content-end gap-2 mt-5">
+  <div class="dialog-footer">
     <p-button label="Cancel" severity="secondary" (onClick)="onClose()" />
     <p-button label="Save" (onClick)="submit()" />
   </div>

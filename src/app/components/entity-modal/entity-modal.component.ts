@@ -31,7 +31,6 @@ export class EntityModalComponent implements OnInit {
   @Input() entity?: any;
   @Input() visible: boolean = true;
   @Output() visibleChange = new EventEmitter<boolean>();
-  @Output() submitEntity = new EventEmitter<any>();
   formValues: any = {};
 
   constructor() {}

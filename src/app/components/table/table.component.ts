@@ -45,11 +45,17 @@ export class TableComponent implements OnInit {
     this.editEvent.emit(item);
   }
 
+  onCreateEvent() {
+    console.log("CREATE EVENT");
+
+    this.createEvent.emit();
+  }
+
   deleteItem(item: any, event: Event) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
-      message: "Do you want to delete this record?",
-      header: "Delete Confirmation",
+      message: "Estas seguro de que quieres eliminar?",
+      header: "Eliminar",
       icon: "pi pi-info-circle",
       acceptButtonStyleClass: "p-button-danger p-button-text",
       rejectButtonStyleClass: "p-button-text p-button-text",
@@ -57,18 +63,7 @@ export class TableComponent implements OnInit {
       rejectIcon: "none",
 
       accept: () => {
-        this.messageService.add({
-          severity: "info",
-          summary: "Confirmed",
-          detail: "Record deleted",
-        });
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: "error",
-          summary: "Rejected",
-          detail: "You have rejected",
-        });
+        this.deleteEvent.emit(item);
       },
     });
   }

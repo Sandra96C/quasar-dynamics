@@ -1,3 +1,9 @@
+<div *ngIf="crud">
+  <button pButton class="btn" (click)="onCreateEvent()">
+    <i class="pi pi-plus" pButtonIcon></i>
+    <span pButtonLabel>Nuevo</span>
+  </button>
+</div>
 <div class="card">
   <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template pTemplate="header">

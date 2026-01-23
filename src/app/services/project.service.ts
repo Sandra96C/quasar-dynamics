@@ -57,4 +57,35 @@ export class ProjectService {
 
     return of(this.projectsCache[index]);
   }
+
+  createProject(project: Project): Observable<Project> {
+    if (!this.projectsCache) {
+      this.projectsCache = [];
+    }
+
+    const maxId = this.projectsCache.length
+      ? Math.max(...this.projectsCache.map((p) => p.id))
+      : 0;
+
+    const newProject: Project = {
+      ...project,
+      id: maxId + 1,
+    };
+
+    this.projectsCache = [...this.projectsCache, newProject];
+
+    return of(newProject);
+  }
+
+  deleteProject(projectId: number): Observable<Project[]> {
+    if (!this.projectsCache) {
+      return of([]);
+    }
+
+    this.projectsCache = this.projectsCache.filter(
+      (project) => project.id !== projectId,
+    );
+
+    return of(this.projectsCache);
+  }
 }

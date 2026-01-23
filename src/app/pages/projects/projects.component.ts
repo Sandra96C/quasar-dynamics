@@ -6,11 +6,13 @@ import { EntityModalComponent } from "../../components/entity-modal/entity-modal
 import { Column, Entity, Project } from "../../models/models";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable, tap } from "rxjs";
+import { ConfirmationService, MessageService } from "primeng/api";
 
 @Component({
   selector: "app-projects",
   standalone: true,
   imports: [TableComponent, ButtonModule, EntityModalComponent],
+  providers: [ConfirmationService, MessageService],
   templateUrl: "./projects.component.html",
   styleUrl: "./projects.component.scss",
 })
@@ -24,6 +26,7 @@ export class ProjectsComponent implements OnInit {
     private projectService: ProjectService,
     private router: Router,
     private route: ActivatedRoute,
+    private messageService: MessageService,
   ) {}
 
   ngOnInit(): void {
@@ -54,71 +57,16 @@ export class ProjectsComponent implements OnInit {
   }
 
   onCreateNewProject() {
-    this.entity = {
-      name: "Crear Nuevo Proyecto",
-      fields: [
-        { key: "name", label: "Nombre", type: "string" },
-        {
-          key: "description",
-          label: "Descripcion",
-          type: "textarea",
-        },
-        {
-          key: "startDate",
-          label: "Fecha inicio",
-          type: "date",
-        },
-        {
-          key: "endDate",
-          label: "Fecha fin",
-          type: "date",
-        },
-      ],
-      onSave: this.createNewProject.bind(this),
-    };
+    this.buildEntity("Nuevo Proyecto", this.createNewProject.bind(this));
     this.dialogVisible = true;
   }
 
   onEditProject(item: any) {
-    console.log("Entra");
-
-    this.entity = {
-      name: "Editar Proyecto",
-      fields: [
-        {
-          key: "id",
-          label: "id",
-          value: item.id,
-          type: "number",
-          disabled: true,
-        },
-        { key: "name", label: "Nombre", value: item.name, type: "string" },
-        {
-          key: "description",
-          label: "Descripcion",
-          value: item.description,
-          type: "textarea",
-        },
-        {
-          key: "startDate",
-          label: "Fecha inicio",
-          value: item.startDate,
-          type: "date",
-        },
-        {
-          key: "endDate",
-          label: "Fecha fin",
-          value: item.endDate,
-          type: "date",
-        },
-      ],
-      onSave: this.editProject.bind(this),
-    };
+    this.buildEntity("Editar Proyecto", this.editProject.bind(this), item);
     this.dialogVisible = true;
   }
 
   editProject(project: Project): Observable<Project> {
-    console.log(project);
     return this.projectService.updateProject(project.id, project).pipe(
       tap((updatedProject: Project) => {
         this.projects = this.projects.map((p) =>
@@ -132,7 +80,70 @@ export class ProjectsComponent implements OnInit {
     this.router.navigate([item.id], { relativeTo: this.route });
   }
 
-  createNewProject(): Observable<any> {
-    return new Observable();
+  createNewProject(item: any): Observable<any> {
+    return this.projectService.createProject(item).pipe(
+      tap((createdProject: Project) => {
+        this.projects.push(createdProject);
+      }),
+    );
+  }
+
+  onDeleteProject(item: any) {
+    this.projectService.deleteProject(item.id).subscribe({
+      next: (data) => {
+        this.projects = this.projects.filter(
+          (project) => project.id !== item.id,
+        );
+
+        this.messageService.add({
+          severity: "info",
+          summary: "Confirmed",
+          detail: "Proyecto Eliminado",
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  buildEntity(title: string, fn: (entity: any) => Observable<any>, item?: any) {
+    this.entity = {
+      name: title,
+      fields: [
+        {
+          key: "id",
+          label: "id",
+          value: item?.id || "",
+          type: "number",
+          disabled: true,
+        },
+        {
+          key: "name",
+          label: "Nombre",
+          value: item?.name || "",
+          type: "string",
+        },
+        {
+          key: "description",
+          label: "Descripcion",
+          value: item?.description || "",
+          type: "textarea",
+        },
+        {
+          key: "startDate",
+          label: "Fecha inicio",
+          value: item?.startDate || "",
+          type: "date",
+        },
+        {
+          key: "endDate",
+          label: "Fecha fin",
+          value: item?.endDate || "",
+          type: "date",
+        },
+      ],
+      onSave: fn,
+    };
   }
 }
