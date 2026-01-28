@@ -4,11 +4,15 @@ import { TasksService } from "../../services/tasks.service";
 import { ButtonModule } from "primeng/button";
 import { Column, Entity, Task } from "../../models/models";
 import { EntityModalComponent } from "../../components/entity-modal/entity-modal.component";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Observable, tap } from "rxjs";
+import { ConfirmationService, MessageService } from "primeng/api";
 
 @Component({
   selector: "app-tasks",
   standalone: true,
   imports: [TableComponent, ButtonModule, EntityModalComponent],
+  providers: [ConfirmationService, MessageService],
   templateUrl: "./tasks.component.html",
   styleUrl: "./tasks.component.scss",
 })
@@ -19,7 +23,12 @@ export class TasksComponent implements OnInit {
   entity?: Entity;
   dialogVisible: boolean = false;
 
-  constructor(private taskService: TasksService) {}
+  constructor(
+    private taskService: TasksService,
+    private messageService: MessageService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     this.getTasks();
@@ -48,90 +57,110 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  createNewTask() {
-    this.entity = {
-      name: "Crear Nueva Tarea",
-      fields: [
-        { key: "title", label: "Titulo", type: "string" },
-        {
-          key: "description",
-          label: "Descripcion",
-          type: "textarea",
-        },
-        {
-          key: "status",
-          label: "Estado",
-          type: "string",
-        },
-        {
-          key: "startDate",
-          label: "Fecha Inicio",
-          type: "date",
-        },
-        {
-          key: "endDate",
-          label: "Fecha fin",
-          type: "date",
-        },
-        {
-          key: "employee",
-          label: "Empleado",
-          type: "string",
-        },
-        {
-          key: "project",
-          label: "Proyecto",
-          type: "string",
-        },
-      ],
-    };
+  onCreateNewTask() {
+    this.buildEntity("Nueva Tarea", this.createNewTask.bind(this));
     this.dialogVisible = true;
   }
 
   onEditTask(item: any) {
     console.log("item", item);
+    this.buildEntity("Editar Tarea", this.editTask.bind(this), item);
+    this.dialogVisible = true;
+  }
+
+  editTask(task: Task): Observable<Task> {
+    return this.taskService.updateTask(task.id, task).pipe(
+      tap((updatedTask: Task) => {
+        this.tasks = this.tasks.map((t) =>
+          t.id === updatedTask.id ? updatedTask : t,
+        );
+      }),
+    );
+  }
+
+  createNewTask(item: any): Observable<any> {
+    return this.taskService.createTask(item).pipe(
+      tap((createdTask: Task) => {
+        this.tasks.push(createdTask);
+      }),
+    );
+  }
+
+  onDeleteTask(item: any) {
+    this.taskService.deleteTask(item.id).subscribe({
+      next: () => {
+        this.tasks = this.tasks.filter((task) => task.id !== item.id);
+
+        this.messageService.add({
+          severity: "info",
+          summary: "Confirmed",
+          detail: "Tarea Eliminada",
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+  onViewTask(item: any) {
+    this.router.navigate([item.id], { relativeTo: this.route });
+  }
+
+  buildEntity(title: string, fn: (entity: any) => Observable<any>, item?: any) {
     this.entity = {
-      name: "Editar Tarea",
+      name: title,
       fields: [
-        { key: "title", label: "Titulo", value: item.title, type: "string" },
+        {
+          key: "id",
+          label: "id",
+          value: item?.id || "",
+          type: "number",
+          disabled: true,
+        },
+        {
+          key: "title",
+          label: "Titulo",
+          value: item?.title || "",
+          type: "string",
+        },
         {
           key: "description",
           label: "Descripcion",
-          value: item.description,
+          value: item?.description || "",
           type: "textarea",
         },
         {
           key: "status",
           label: "Estado",
-          value: item.status,
+          value: item?.status || "",
           type: "string",
         },
         {
           key: "startDate",
           label: "Fecha Inicio",
-          value: item.startDate,
+          value: item?.startDate || "",
           type: "date",
         },
         {
           key: "endDate",
           label: "Fecha fin",
-          value: item.endDate,
+          value: item?.endDate || "",
           type: "date",
         },
         {
           key: "employee",
           label: "Empleado",
-          value: item.employee,
+          value: item?.employee || "",
           type: "string",
         },
         {
           key: "project",
           label: "Proyecto",
-          value: item.project,
+          value: item?.project || "",
           type: "string",
         },
       ],
+      onSave: fn,
     };
-    this.dialogVisible = true;
   }
 }

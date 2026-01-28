@@ -1,6 +1,6 @@
-<div class="project-wrapper " *ngIf="project">
+@if (project) {
+<div class="project-wrapper ">
 
-  <!-- PROYECTO -->
   <p-card class="project-card">
     <ng-template pTemplate="header">
       <h2>{{ project.name }}</h2>
@@ -12,7 +12,6 @@
     </p>
   </p-card>
 
-  <!-- TAREAS -->
   <p-card>
     <ng-template pTemplate="header">
       <h3>Tareas</h3>
@@ -22,3 +21,4 @@
   </p-card>
 
 </div>
+}

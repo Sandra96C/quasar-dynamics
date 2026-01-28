@@ -36,8 +36,6 @@ export class ProjectsComponent implements OnInit {
   getProjects() {
     this.projectService.getProjects().subscribe({
       next: (data: Project[]) => {
-        console.log({ data });
-
         if (data) {
           this.projects = data;
           this.columns = [
@@ -90,7 +88,7 @@ export class ProjectsComponent implements OnInit {
 
   onDeleteProject(item: any) {
     this.projectService.deleteProject(item.id).subscribe({
-      next: (data) => {
+      next: () => {
         this.projects = this.projects.filter(
           (project) => project.id !== item.id,
         );

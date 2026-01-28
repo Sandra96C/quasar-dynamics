@@ -69,6 +69,7 @@ export interface EmployeeFilters {
   employeeId?: number;
   projectId?: number;
   status?: string;
+  role?: "admin" | "employee";
   employee?: number;
   startDateFrom?: Date;
   startDateTo?: Date;

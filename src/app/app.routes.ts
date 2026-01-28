@@ -9,6 +9,7 @@ import { ProjectsComponent } from "./pages/projects/projects.component";
 import { guestGuard } from "./guards/guest.guard";
 import { HomeComponent } from "./pages/home/home.component";
 import { ProjectDetailComponent } from "./pages/project-detail/project-detail.component";
+import { TaskDetailComponent } from "./pages/task-detail/task-detail.component";
 
 export const routes: Routes = [
   { path: "", redirectTo: "dashboard", pathMatch: "full" },
@@ -22,6 +23,7 @@ export const routes: Routes = [
       { path: "projects", component: ProjectsComponent },
       { path: "projects/:id", component: ProjectDetailComponent },
       { path: "tasks", component: TasksComponent },
+      { path: "tasks/:id", component: TaskDetailComponent },
       { path: "employees", component: EmployeesComponent },
     ],
   },

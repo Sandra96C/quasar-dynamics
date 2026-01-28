@@ -5,7 +5,9 @@
     </div>
   </header>
   <div>
-    <app-table [columns]="columns" [items]="tasks" [crud]="true" (editItem)="onEditTask($event)"></app-table>
+    <app-table [columns]="columns" [items]="tasks" [crud]="true" (editEvent)="onEditTask($event)"
+      (createEvent)="onCreateNewTask()" (deleteEvent)="onDeleteTask($event)"
+      (viewItem)="onViewTask($event)"></app-table>
   </div>
 </div>
-<app-entity-modal [visible]="dialogVisible" [entity]="entity" />
+<app-entity-modal [(visible)]="dialogVisible" [entity]="entity" />
