@@ -45,7 +45,6 @@ export class ProjectsComponent implements OnInit {
             { key: "startDate", label: "fecha de inicio", type: "date" },
             { key: "endDate", label: "fecha fin", type: "date" },
           ];
-          console.log(data);
         }
       },
       error: (err) => {

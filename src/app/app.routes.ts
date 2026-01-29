@@ -10,6 +10,7 @@ import { guestGuard } from "./guards/guest.guard";
 import { HomeComponent } from "./pages/home/home.component";
 import { ProjectDetailComponent } from "./pages/project-detail/project-detail.component";
 import { TaskDetailComponent } from "./pages/task-detail/task-detail.component";
+import { EmployeeDetailComponent } from "./pages/employee-detail/employee-detail.component";
 
 export const routes: Routes = [
   { path: "", redirectTo: "dashboard", pathMatch: "full" },
@@ -25,6 +26,7 @@ export const routes: Routes = [
       { path: "tasks", component: TasksComponent },
       { path: "tasks/:id", component: TaskDetailComponent },
       { path: "employees", component: EmployeesComponent },
+      { path: "employees/:id", component: EmployeeDetailComponent },
     ],
   },
   { path: "login", component: LoginComponent, canActivate: [guestGuard] },

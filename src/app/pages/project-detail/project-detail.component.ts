@@ -25,7 +25,7 @@ export class ProjectDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private TaskService: TasksService,
+    private taskService: TasksService,
     private router: Router,
   ) {}
 
@@ -54,7 +54,7 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   getProjectTasks() {
-    this.TaskService.getTasks({ projectId: this.project.id }).subscribe({
+    this.taskService.getTasks({ projectId: this.project.id }).subscribe({
       next: (data: Task[] | undefined) => {
         if (data) {
           this.tasks = data;

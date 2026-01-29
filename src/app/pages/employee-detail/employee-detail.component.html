@@ -1,0 +1,31 @@
+@if (employee) {
+<div class="employee-detail-wrapper">
+  <div class="employee-header">
+    <h2 class="employee-title">{{ employee.fullName }}</h2>
+    <p-tag [value]="employee.role | uppercase" [severity]="
+          employee.role === 'admin'
+          ? 'success'
+          : 'info'
+          " />
+  </div>
+
+  <p-card>
+    <ng-template pTemplate="header">
+      <h3>Proyectos Asignados:</h3>
+    </ng-template>
+
+    <app-table [columns]="columnsProject" [items]="projects" [crud]="false"></app-table>
+  </p-card>
+
+  <p-card>
+    <ng-template pTemplate="header">
+      <h3>Tareas Asignadas:</h3>
+    </ng-template>
+
+    <app-table [columns]="columnsTask" [items]="tasks" [crud]="false"></app-table>
+  </p-card>
+
+
+
+</div>
+}

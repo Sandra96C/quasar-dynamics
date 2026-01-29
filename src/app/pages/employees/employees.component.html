@@ -5,8 +5,10 @@
     </div>
   </header>
   <div>
-    <app-table [columns]="columns" [items]="employees" [crud]="true" (editItem)="onEditEmployee($event)"></app-table>
+    <app-table [columns]="columns" [items]="employees" [crud]="true" (editEvent)="onEditEmployee($event)"
+      (createEvent)="onCreateNewEmployee()" (deleteEvent)="onDeleteEmployee($event)"
+      (viewItem)="onViewEmployee($event)"></app-table>
   </div>
 </div>
 
-<app-entity-modal [visible]="dialogVisible" [entity]="entity" />
+<app-entity-modal [(visible)]="dialogVisible" [entity]="entity" />
