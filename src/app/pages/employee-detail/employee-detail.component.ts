@@ -37,7 +37,6 @@ export class EmployeeDetailComponent implements OnInit {
   ngOnInit(): void {
     this.employeeId = this.route.snapshot.paramMap.get("id")!;
     this.getEmployeeByUrl();
-    console.log(this.employeeId);
   }
 
   getEmployeeByUrl() {
@@ -69,8 +68,8 @@ export class EmployeeDetailComponent implements OnInit {
         this.columnsProject = [
           { key: "id", label: "id" },
           { key: "name", label: "nombre" },
-          { key: "description", label: "descripcion" },
-          { key: "startDate", label: "fecha de inicio", type: "date" },
+          { key: "description", label: "descripción" },
+          { key: "startDate", label: "fecha inicio", type: "date" },
           { key: "endDate", label: "fecha fin", type: "date" },
         ];
         this.getTasks();
@@ -94,7 +93,7 @@ export class EmployeeDetailComponent implements OnInit {
           { key: "title", label: "titulo" },
           { key: "description", label: "descripción" },
           { key: "status", label: "estado", type: "status" },
-          { key: "startDate", label: "fecha de inicio", type: "date" },
+          { key: "startDate", label: "fecha inicio", type: "date" },
           { key: "endDate", label: "fecha fin", type: "date" },
         ];
       },

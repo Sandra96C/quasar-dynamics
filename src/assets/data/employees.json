@@ -3,7 +3,7 @@
     {
       "id": 1,
       "fullName": "Sandra Colomer",
-      "email": "123@123.es",
+      "email": "admin@prueba.es",
       "password": "123",
       "role": "admin",
       "projects": [1, 2],
@@ -12,8 +12,8 @@
     {
       "id": 2,
       "fullName": "Laura Gómez",
-      "email": "laura@empresa.com",
-      "password": "12345678",
+      "email": "prueba@prueba.es",
+      "password": "123",
       "role": "employee",
       "projects": [1],
       "tasks": [3, 6]

@@ -1,12 +1,13 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import { PanelMenuModule } from "primeng/panelmenu";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
+import { CommonModule } from "@angular/common";
 @Component({
   selector: "app-menu",
   standalone: true,
-  imports: [PanelMenuModule],
+  imports: [PanelMenuModule, CommonModule],
   templateUrl: "./menu.component.html",
   styleUrl: "./menu.component.scss",
 })
@@ -19,6 +20,8 @@ export class MenuComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const isAdmin = this.authService.getRole() === "admin";
+
     this.items = [
       {
         label: "Home",
@@ -35,17 +38,19 @@ export class MenuComponent implements OnInit {
         icon: "pi pi-list",
         routerLink: ["/dashboard/tasks"],
       },
-      {
-        label: "Empleados",
-        icon: "pi pi-users",
-        routerLink: ["/dashboard/employees"],
-      },
-      {
-        separator: true,
-      },
+      ...(isAdmin
+        ? [
+            {
+              label: "Empleados",
+              icon: "pi pi-users",
+              routerLink: ["/dashboard/employees"],
+            },
+          ]
+        : []),
       {
         label: "Cerrar sesión",
         icon: "pi pi-sign-out",
+        styleClass: "last-item",
         command: () => this.logout(),
       },
     ];

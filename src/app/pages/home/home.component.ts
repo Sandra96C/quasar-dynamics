@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
 
   getUser() {
     const user = this.authService.getCurrentUser();
-    console.log(user);
     this.user = user;
   }
 }

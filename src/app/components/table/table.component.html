@@ -5,10 +5,11 @@
   </button>
 </div>
 <div class="card">
-  <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table [value]="items" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[5, 10, 20]" [scrollable]="true" scrollHeight="calc(100vh - 300px)">
     <ng-template pTemplate="header">
       <tr>
-        <th *ngFor="let column of columns ">{{column.label | titlecase }}</th>
+        <th *ngFor="let column of columns " pSortableColumn="{{column.key}}">{{column.label | titlecase }}</th>
         <th *ngIf="crud"></th>
       </tr>
     </ng-template>

@@ -1,0 +1,32 @@
+.panel-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.logo-container {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.logo-container img {
+  width: 200px;
+  height: auto;
+}
+
+:host ::ng-deep .p-panelmenu .p-panelmenu-header-content,
+:host ::ng-deep .p-panelmenu .p-panelmenu-header-action {
+  background: #a0c7d3;
+  border: none;
+  color: #323030;
+  border-radius: 0;
+}
+
+:host ::ng-deep .p-panelmenu .p-panelmenu-panel:last-child {
+  margin-top: auto;
+}
+
+:host ::ng-deep .p-panelmenu .p-menuitem-link-active,
+:host ::ng-deep .p-panelmenu-header-action:hover {
+  color: white;
+}

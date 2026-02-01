@@ -6,13 +6,11 @@
         <h2 class="task-title">{{ task.title }}</h2>
       </div>
     </ng-template>
-
     <div class="task-info-item">
       <div>
         <h4>Fecha Inicio: </h4>
         <span class="value">{{ task.startDate | date:'dd/MM/yyyy' }}</span>
       </div>
-
       <div>
         <h4>Fecha Fin: </h4>
         <span class="value">{{ task.endDate | date:'dd/MM/yyyy' }}</span>
@@ -25,19 +23,13 @@
           : 'info'
           " />
     </div>
-
-
     <section class="task-section">
       <h4>Descripción</h4>
       <p class="task-description">
         {{ task.description || 'Sin descripción' }}
       </p>
     </section>
-
-
     <p-divider></p-divider>
-
-
     <div class="task-info-grid">
       <div>
         <h4>Proyecto: </h4>
@@ -46,15 +38,11 @@
             {{ task.project }}
           </a></span>
       </div>
-
-
       <div>
         <h4>Empleado asignado:</h4>
         <span class="value">{{ task.employee ?? '' }}</span>
       </div>
     </div>
-
-
   </p-card>
 </div>
 }

@@ -41,8 +41,8 @@ export class ProjectsComponent implements OnInit {
           this.columns = [
             { key: "id", label: "id" },
             { key: "name", label: "nombre" },
-            { key: "description", label: "descripcion" },
-            { key: "startDate", label: "fecha de inicio", type: "date" },
+            { key: "description", label: "descripción" },
+            { key: "startDate", label: "fecha inicio", type: "date" },
             { key: "endDate", label: "fecha fin", type: "date" },
           ];
         }
@@ -123,7 +123,7 @@ export class ProjectsComponent implements OnInit {
         },
         {
           key: "description",
-          label: "Descripcion",
+          label: "descripción",
           value: item?.description || "",
           type: "textarea",
         },

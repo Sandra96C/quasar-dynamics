@@ -37,17 +37,13 @@ export class TableComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
   ) {}
-  ngOnInit(): void {
-    console.log(this.crud);
-  }
+  ngOnInit(): void {}
 
   onEditEvent(item: any) {
     this.editEvent.emit(item);
   }
 
   onCreateEvent() {
-    console.log("CREATE EVENT");
-
     this.createEvent.emit();
   }
 

@@ -37,9 +37,6 @@ export class TaskDetailComponent implements OnInit {
       next: (data: Task[] | undefined) => {
         if (data && data.length) {
           this.task = data[0];
-          console.log("task", this.task);
-
-          // this.getProjectTasks();
         } else {
           this.router.navigate(["/404"]);
         }

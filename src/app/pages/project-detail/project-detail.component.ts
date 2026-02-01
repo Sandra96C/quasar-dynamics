@@ -32,7 +32,6 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get("id")!;
     this.getProjectByUrl();
-    console.log(this.projectId);
   }
 
   getProjectByUrl() {
@@ -61,9 +60,9 @@ export class ProjectDetailComponent implements OnInit {
           this.columns = [
             { key: "id", label: "id" },
             { key: "title", label: "titulo" },
-            { key: "description", label: "descripcion" },
+            { key: "description", label: "descripción" },
             { key: "status", label: "estado", type: "status" },
-            { key: "startDate", label: "fecha de inicio", type: "date" },
+            { key: "startDate", label: "fecha inicio", type: "date" },
             { key: "endDate", label: "fecha fin", type: "date" },
             { key: "employee", label: "empleado" },
             { key: "project", label: "proyecto" },

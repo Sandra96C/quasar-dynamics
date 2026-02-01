@@ -42,9 +42,9 @@ export class TasksComponent implements OnInit {
           this.columns = [
             { key: "id", label: "id" },
             { key: "title", label: "titulo" },
-            { key: "description", label: "descripcion" },
+            { key: "description", label: "descripción" },
             { key: "status", label: "estado", type: "status" },
-            { key: "startDate", label: "fecha de inicio", type: "date" },
+            { key: "startDate", label: "fecha inicio", type: "date" },
             { key: "endDate", label: "fecha fin", type: "date" },
             { key: "employee", label: "empleado" },
             { key: "project", label: "proyecto" },
@@ -63,7 +63,6 @@ export class TasksComponent implements OnInit {
   }
 
   onEditTask(item: any) {
-    console.log("item", item);
     this.buildEntity("Editar Tarea", this.editTask.bind(this), item);
     this.dialogVisible = true;
   }
@@ -125,7 +124,7 @@ export class TasksComponent implements OnInit {
         },
         {
           key: "description",
-          label: "Descripcion",
+          label: "descripción",
           value: item?.description || "",
           type: "textarea",
         },

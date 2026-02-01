@@ -19,6 +19,14 @@ export class AuthService {
     return data ? JSON.parse(data) : null;
   }
 
+  getRole(): string | null {
+    return this.getCurrentUser()?.role ?? null;
+  }
+
+  getUserId(): number | null {
+    return this.getCurrentUser()?.id ?? null;
+  }
+
   login(
     email: string,
     password: string,
