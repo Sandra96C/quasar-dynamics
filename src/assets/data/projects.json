@@ -1,0 +1,25 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Colchones",
+      "description": "La empresa de colchones mivi quiere una actualización del sistema",
+      "startDate": "2025-12-01T00:00:00Z",
+      "endDate": "2026-04-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Electro",
+      "description": "Realizar mejoras en la gestion de pedidos",
+      "startDate": "2025-12-05T00:00:00Z",
+      "endDate": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "name": "Restaurante",
+      "description": "Desarrollar nuevo proyecto para la gestion y administracion de la cadena alimentaria Verne",
+      "startDate": "2025-10-10T00:00:00Z",
+      "endDate": "2026-08-10T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+@if (project) {
+<div class="project-wrapper ">
+
+  <p-card class="project-card">
+    <ng-template pTemplate="header">
+      <h2>{{ project.name }}</h2>
+    </ng-template>
+
+    <h4> Descripción: </h4>
+    <p class="description">
+      {{ project.description }}
+    </p>
+  </p-card>
+
+  <p-card>
+    <ng-template pTemplate="header">
+      <h3>Tareas</h3>
+    </ng-template>
+
+    <app-table [columns]="columns" [items]="tasks" [crud]="false"></app-table>
+  </p-card>
+
+</div>
+}

@@ -1,0 +1,40 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "fullName": "Sandra Colomer",
+      "email": "admin@prueba.es",
+      "password": "123",
+      "role": "admin",
+      "projects": [1, 2],
+      "tasks": [1, 5]
+    },
+    {
+      "id": 2,
+      "fullName": "Laura Gómez",
+      "email": "prueba@prueba.es",
+      "password": "123",
+      "role": "employee",
+      "projects": [1],
+      "tasks": [3, 6]
+    },
+    {
+      "id": 3,
+      "fullName": "Andrés Pérez",
+      "email": "andres@empresa.com",
+      "password": "12345678",
+      "role": "employee",
+      "projects": [2, 3],
+      "tasks": [4, 7, 8]
+    },
+    {
+      "id": 4,
+      "fullName": "María Rodríguez",
+      "email": "maria@empresa.com",
+      "password": "12345678",
+      "role": "employee",
+      "projects": [1, 2, 3],
+      "tasks": [2]
+    }
+  ]
+}

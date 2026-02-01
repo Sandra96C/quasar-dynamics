@@ -1,0 +1,16 @@
+<div class="px-4 py-8">
+  <header class="mb-8">
+    <div class="flex items-center gap-5">
+      <h1> Proyectos</h1>
+    </div>
+  </header>
+  @if (projects && projects.length) {
+  <div>
+    <app-table [columns]="columns" [items]="projects" [crud]="true" (editEvent)="onEditProject($event)"
+      (createEvent)="onCreateNewProject()" (deleteEvent)="onDeleteProject($event)"
+      (viewItem)="onViewProject($event)"></app-table>
+  </div>
+  }
+</div>
+
+<app-entity-modal [(visible)]="dialogVisible" [entity]="entity" />

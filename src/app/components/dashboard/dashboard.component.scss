@@ -1,0 +1,17 @@
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+.menu {
+  width: 250px;
+  border-right: 1px solid #ccc;
+  background: linear-gradient(180deg, #5982c2 0%, #023952 100%);
+  margin: -8px;
+  padding: 5px;
+}
+
+.content {
+  flex: 1;
+  padding: 16px;
+}
